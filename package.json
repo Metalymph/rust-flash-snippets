@@ -1,0 +1,20 @@
+{
+    "name": "rust-flash-snippets",
+    "displayName": "Rust Flash Snippets",
+    "description": "A comprehensive set of Rust snippets for everyone",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.51.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "rust",
+                "path": "./snippets/snippets.code-snippets"
+            }
+        ]
+    }
+}
