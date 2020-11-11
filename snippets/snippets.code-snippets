@@ -66,24 +66,24 @@
     "struct": {
         "prefix": "stru",
         "body": [
-            "struct ${1:name}${2:<T>} {",
-            "\t${3:field}: ${4:type}$0",
+            "${1|struct,pub struct|} ${2:name}${3:<T>} {",
+            "\t${4:field}: ${5:type}$0",
             "}",
         ],
         "description": "struct decl"
     },
     "astruct": {
-        "prefix": "stru_a",
+        "prefix": "stru_tup",
         "body": [
             "struct ${1:name}${2:<T>} (${3:type}, ${4:type})$0",
         ],
-        "description": "anonymous struct decl"
+        "description": "tuple struct decl"
     },
     "enum": {
         "prefix": "enum",
         "body": [
-            "enum ${1:name}${2:<T>} {",
-            "\t${3:field}(${4:type}$0)",
+            "${1|enum,pub enum|} ${2:name}${3:<T>} {",
+            "\t${4:field}(${5:type}$0)",
             "}",
         ],
         "description": "enum decl"
@@ -91,7 +91,7 @@
     "trait": {
         "prefix": "trait",
         "body": [
-            "trait ${1:name}${2:<>} {",
+            "${1|trait,pub trait|} ${2:name}${3:<T>} {",
             "\t$0",
             "}",
         ],
@@ -119,7 +119,7 @@
         "prefix": "impl",
         "body": [
             "impl ${1:type} {",
-            "\t fn new(${2:param}: ${type}) -> ${1:type} {",
+            "\t ${2|fn,pub fn|} new(${3:param}: ${type}) -> ${1:type} {",
             "\t$0",
             "}",
         ],
@@ -128,7 +128,7 @@
     "fn": {
         "prefix": "fn",
         "body": [
-            "fn ${1:name}(${2:param1}:${3:type}) -> ${4:return_type} {",
+            "${1|fn,pub fn} ${2:name}(${3:param1}:${4:type}) -> ${5:return_type} {",
             "\t$0",
             "}",
         ],
@@ -170,5 +170,32 @@
             "}",
         ],
         "description": "module decl"
+    },
+    "use": {
+        "prefix": "use",
+        "body": [
+            "use ${1:crate}::$0",
+        ],
+        "description": "use crate/type/fn"
+    },
+    "test_mod": {
+        "prefix": "test_mod",
+        "body": [
+            "#[cfg(test)]",
+            "mod {",
+            "\t$0",
+            "}",
+        ],
+        "description": "module test decl"
+    },
+    "test_fn": {
+        "prefix": "fn_test",
+        "body": [
+            "#[test]",
+            "fn ${1:name}(${2:param}: ${3:type}) -> ${4:return_type} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "test fn decl"
     },
 }

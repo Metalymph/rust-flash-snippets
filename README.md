@@ -12,7 +12,7 @@ This extension provides a comprehensive set of snippets for Rust.
 | loop       | infinite loop               |
 | for        | for loop                    |
 | stru       | struct decl                 |
-| stru_a     | anonymous struct decl       |
+| stru_a     | tuple struct decl           |
 | enum       | enum decl                   |
 | impl_known | impl a known trait for type |
 | impl_t     | impl a trait for type       |
@@ -22,3 +22,6 @@ This extension provides a comprehensive set of snippets for Rust.
 | async_fn   | async fn decl               |
 | block      | block decl                  |
 | mod        | module decl                 |
+| use        | use crate/type/fn           |
+| test_mod   | module test decl            |
+| fn_test    | test fn decl                |
