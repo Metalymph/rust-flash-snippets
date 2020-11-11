@@ -1,1 +1,59 @@
-{}
+{
+    "let": {
+        "prefix": "let",
+        "body": [
+            "${1|let,let mut|} ${2:varname} : ${3:type} = ${4:expr}$0"
+        ],
+        "description": "var declaration"
+    },
+    "if": {
+        "prefix": "if",
+        "body": [
+            "if ${1:expr} {",
+            "\t${2:body}",
+            "} else {",
+            "\t${3:body}",
+            "}",
+            "$0"
+        ],
+        "description": "if-else"
+    },
+    "if-let": {
+        "prefix": "if?",
+        "body": [
+            "if let ${1|Some(e),Err(e)|} = ${2:expr} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "if-let"
+    },
+    "match": {
+        "prefix": "match",
+        "body": [
+            "match ${1:expr} {",
+            "\t${2:Case1} => ${3:expr1}",
+            "\t${4:Case2} => ${5:expr2}",
+            "}",
+            "$0"
+        ],
+        "description": "match expr"
+    },
+    "loop": {
+        "prefix": "loop",
+        "body": [
+            "if let ${1|Some(e),Err(e)|} ${2:expr} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "infinite loop"
+    },
+    "for": {
+        "prefix": "loop",
+        "body": [
+            "loop {",
+            "\t$0",
+            "}",
+        ],
+        "description": "for loop"
+    },
+}
