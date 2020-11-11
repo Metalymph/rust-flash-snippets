@@ -4,6 +4,7 @@
     "description": "A comprehensive set of Rust snippets for everyone",
     "version": "0.0.1",
     "publisher": "lorenzopirro",
+    "icon": "images/rust_programming_crab_sea.png",
     "engines": {
         "vscode": "^1.51.0"
     },
@@ -17,5 +18,9 @@
                 "path": "./snippets/snippets.code-snippets"
             }
         ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Metalymph/rust-flash-snippets.git"
     }
 }
