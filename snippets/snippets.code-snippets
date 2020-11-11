@@ -50,10 +50,118 @@
     "for": {
         "prefix": "loop",
         "body": [
-            "loop {",
+            "for ${1:index}, ${2:value} in ${3:iterator} {",
             "\t$0",
             "}",
         ],
         "description": "for loop"
+    },
+    "struct": {
+        "prefix": "stru",
+        "body": [
+            "struct ${1:name}${2:<T>} {",
+            "\t${3:field}: ${4:type}$0",
+            "}",
+        ],
+        "description": "struct decl"
+    },
+    "astruct": {
+        "prefix": "stru_a",
+        "body": [
+            "struct ${1:name}${2:<T>} (${3:type}, ${4:type})$0",
+        ],
+        "description": "anonymous struct decl"
+    },
+    "enum": {
+        "prefix": "enum",
+        "body": [
+            "enum ${1:name}${2:<T>} {",
+            "\t${3:field}(${4:type}$0)",
+            "}",
+        ],
+        "description": "struct decl"
+    },
+    "trait": {
+        "prefix": "trait",
+        "body": [
+            "trait ${1:name}${2:<>} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "trait decl"
+    },
+    "impl_known_trait": {
+        "prefix": "impl_known",
+        "body": [
+            "impl ${1|Display,Debug,Clone,Copy,Hashable,|} for ${2:type} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "impl a known trait for type"
+    },
+    "impl_trait": {
+        "prefix": "impl_t",
+        "body": [
+            "impl ${1:trait_name} for ${2:type} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "impl a trait for type"
+    },
+    "const/method": {
+        "prefix": "impl",
+        "body": [
+            "impl ${1:type} {",
+            "\t fn new(${2:param}: ${type}) -> ${1:type} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "impl constructor/method"
+    },
+    "fn": {
+        "prefix": "fn",
+        "body": [
+            "fn ${1:name}(${2:param1}:${3:type}) -> ${4:return_type} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "fn decl"
+    },
+    "method": {
+        "prefix": "fn_met",
+        "body": [
+            "fn ${1:name}(${2|self,&self,&mut self|}, ${3:param1}:${4:type}) -> ${5:return_type} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "fn decl"
+    },
+    "async_fn": {
+        "prefix": "async",
+        "body": [
+            "async fn ${1:name}(${2:param1}:${3:type}) -> ${4:std::io::Result<()>} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "async fn decl"
+    },
+    "block": {
+        "prefix": "\\{",
+        "body": [
+            "//////${1:inner_scope_description}",
+            "{",
+            "\t$0",
+            "}",
+        ],
+        "description": "block"
+    },
+    "mod": {
+        "prefix": "mod",
+        "body": [
+            "${1|mod,pub mod| {",
+            "\t$0",
+            "}",
+        ],
+        "description": "module decl"
     },
 }
