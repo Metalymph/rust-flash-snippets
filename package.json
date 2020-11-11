@@ -3,6 +3,7 @@
     "displayName": "Rust Flash Snippets",
     "description": "A comprehensive set of Rust snippets for everyone",
     "version": "0.0.1",
+    "publisher": "lorenzopirro",
     "engines": {
         "vscode": "^1.51.0"
     },
