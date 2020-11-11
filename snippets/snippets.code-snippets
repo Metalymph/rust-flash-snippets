@@ -2,9 +2,16 @@
     "let": {
         "prefix": "let",
         "body": [
-            "${1|let,let mut|} ${2:varname} : ${3:type} = ${4:expr}$0"
+            "let ${2:varname} : ${3:type} = ${4:expr}$0"
         ],
-        "description": "var declaration"
+        "description": "unmutable var declaration"
+    },
+    "let_mut": {
+        "prefix": "let_mut",
+        "body": [
+            "let mut ${2:varname} : ${3:type} = ${4:expr}$0"
+        ],
+        "description": "mutable var declaration"
     },
     "if": {
         "prefix": "if",
@@ -41,7 +48,7 @@
     "loop": {
         "prefix": "loop",
         "body": [
-            "if let ${1|Some(e),Err(e)|} ${2:expr} {",
+            "loop {",
             "\t$0",
             "}",
         ],
@@ -79,7 +86,7 @@
             "\t${3:field}(${4:type}$0)",
             "}",
         ],
-        "description": "struct decl"
+        "description": "enum decl"
     },
     "trait": {
         "prefix": "trait",
@@ -93,7 +100,7 @@
     "impl_known_trait": {
         "prefix": "impl_known",
         "body": [
-            "impl ${1|Display,Debug,Clone,Copy,Hashable,|} for ${2:type} {",
+            "impl ${1|Display,Debug,Clone,Copy,Hashable|} for ${2:type} {",
             "\t$0",
             "}",
         ],
@@ -134,7 +141,7 @@
             "\t$0",
             "}",
         ],
-        "description": "fn decl"
+        "description": "method decl"
     },
     "async_fn": {
         "prefix": "async",
@@ -158,7 +165,7 @@
     "mod": {
         "prefix": "mod",
         "body": [
-            "${1|mod,pub mod| {",
+            "${1|mod,pub mod|} {",
             "\t$0",
             "}",
         ],
