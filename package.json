@@ -2,7 +2,7 @@
     "name": "rust-flash-snippets",
     "displayName": "Rust Flash Snippets",
     "description": "A comprehensive set of Rust snippets for everyone",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "lorenzopirro",
     "icon": "images/rust_programming_crab_sea.png",
     "engines": {

@@ -100,7 +100,7 @@
     "impl_known_trait": {
         "prefix": "impl_known",
         "body": [
-            "impl ${1|Display,Debug,Clone,Copy,Hashable|} for ${2:type} {",
+            "impl ${1|Clone,Copy,Debug,Deref,Display,Drop,Hashable,Send,Sync|} for ${2:type} {",
             "\t$0",
             "}",
         ],
@@ -153,12 +153,11 @@
         "description": "async fn decl"
     },
     "block": {
-        "prefix": "\\{",
+        "prefix": "{",
         "body": [
-            "//////${1:inner_scope_description}",
+            "///${1:inner_scope_description}",
             "{",
             "\t$0",
-            "}",
         ],
         "description": "block"
     },
