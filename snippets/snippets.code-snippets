@@ -128,7 +128,7 @@
     "fn": {
         "prefix": "fn",
         "body": [
-            "${1|fn,pub fn} ${2:name}(${3:param1}:${4:type}) -> ${5:return_type} {",
+            "${1|fn,pub fn|} ${2:name}(${3:param1}:${4:type}) -> ${5:return_type} {",
             "\t$0",
             "}",
         ],
