@@ -38,10 +38,8 @@
         "prefix": "match",
         "body": [
             "match ${1:expr} {",
-            "\t${2:Case1} => ${3:expr1}",
-            "\t${4:Case2} => ${5:expr2}",
+            "\t$0",
             "}",
-            "$0"
         ],
         "description": "match expr"
     },
@@ -67,7 +65,7 @@
         "prefix": "stru",
         "body": [
             "${1|struct,pub struct|} ${2:name}${3:<T>} {",
-            "\t${4:field}: ${5:type}$0",
+            "\t$0",
             "}",
         ],
         "description": "struct decl"
@@ -75,7 +73,7 @@
     "astruct": {
         "prefix": "stru_tup",
         "body": [
-            "struct ${1:name}${2:<T>} (${3:type}, ${4:type})$0",
+            "struct ${1:name}${2:<T>} ($0)",
         ],
         "description": "tuple struct decl"
     },
@@ -83,7 +81,7 @@
         "prefix": "enum",
         "body": [
             "${1|enum,pub enum|} ${2:name}${3:<T>} {",
-            "\t${4:field}(${5:type}$0)",
+            "\t$0",
             "}",
         ],
         "description": "enum decl"
@@ -119,17 +117,18 @@
         "prefix": "impl",
         "body": [
             "impl ${1:type} {",
-            "\t ${2|fn,pub fn|} new(${3:param}: ${type}) -> ${1:type} {",
-            "\t$0",
-            "}",
+            "\t${2|fn,pub fn|} new($0) -> Foo {",
+            "\t\tFoo{}$0",
+            "\t}",
+            "}"
         ],
         "description": "impl constructor/method"
     },
     "fn": {
         "prefix": "fn",
         "body": [
-            "${1|fn,pub fn|} ${2:name}(${3:param1}:${4:type}) -> ${5:return_type} {",
-            "\t$0",
+            "${1|fn,pub fn|} ${2:name}($0) -> i32 {",
+            "\t1",
             "}",
         ],
         "description": "fn decl"
@@ -137,8 +136,8 @@
     "method": {
         "prefix": "fn_met",
         "body": [
-            "fn ${1:name}(${2|self,&self,&mut self|}, ${3:param1}:${4:type}) -> ${5:return_type} {",
-            "\t$0",
+            "fn ${1:name}(${2|self,&self,&mut self|}, $0) -> i32 {",
+            "\t1",
             "}",
         ],
         "description": "method decl"
@@ -146,8 +145,8 @@
     "async_fn": {
         "prefix": "async",
         "body": [
-            "async fn ${1:name}(${2:param1}:${3:type}) -> ${4:std::io::Result<()>} {",
-            "\t$0",
+            "async fn ${1:name}($0) -> std::io::Result<i32, futures::future::err> {",
+            "\tOk(1)",
             "}",
         ],
         "description": "async fn decl"
@@ -191,8 +190,8 @@
         "prefix": "fn_test",
         "body": [
             "#[test]",
-            "fn ${1:name}(${2:param}: ${3:type}) -> ${4:return_type} {",
-            "\t$0",
+            "fn ${1:name}($0) -> i32 {",
+            "\t1",
             "}",
         ],
         "description": "test fn decl"
