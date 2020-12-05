@@ -17,11 +17,10 @@
         "prefix": "if",
         "body": [
             "if ${1:expr} {",
-            "\t${2:body}",
+            "\t$0",
             "} else {",
-            "\t${3:body}",
+            "\t",
             "}",
-            "$0"
         ],
         "description": "if-else"
     },
@@ -64,7 +63,7 @@
     "struct": {
         "prefix": "stru",
         "body": [
-            "${1|struct,pub struct|} ${2:name}${3:<T>} {",
+            "struct ${2:name}${3:<T>} {",
             "\t$0",
             "}",
         ],
@@ -80,7 +79,7 @@
     "enum": {
         "prefix": "enum",
         "body": [
-            "${1|enum,pub enum|} ${2:name}${3:<T>} {",
+            "enum ${2:name}${3:<T>} {",
             "\t$0",
             "}",
         ],
@@ -89,7 +88,7 @@
     "trait": {
         "prefix": "trait",
         "body": [
-            "${1|trait,pub trait|} ${2:name}${3:<T>} {",
+            "trait ${2:name}${3:<T>} {",
             "\t$0",
             "}",
         ],
@@ -117,8 +116,8 @@
         "prefix": "impl",
         "body": [
             "impl ${1:type} {",
-            "\t${2|fn,pub fn|} new($0) -> Foo {",
-            "\t\tFoo{}$0",
+            "\tfn new($0) -> ${1:type} {",
+            "\t\t${1:type}{}",
             "\t}",
             "}"
         ],
@@ -127,7 +126,7 @@
     "fn": {
         "prefix": "fn",
         "body": [
-            "${1|fn,pub fn|} ${2:name}($0) -> i32 {",
+            "fn ${2:name}($0) -> i32 {",
             "\t1",
             "}",
         ],
@@ -136,7 +135,7 @@
     "method": {
         "prefix": "fn_met",
         "body": [
-            "fn ${1:name}(${2|self,&self,&mut self|}, $0) -> i32 {",
+            "fn ${1:name}(${2:&self}, $0) -> i32 {",
             "\t1",
             "}",
         ],
@@ -150,15 +149,6 @@
             "}",
         ],
         "description": "async fn decl"
-    },
-    "block": {
-        "prefix": "{",
-        "body": [
-            "///${1:inner_scope_description}",
-            "{",
-            "\t$0",
-        ],
-        "description": "block"
     },
     "mod": {
         "prefix": "mod",

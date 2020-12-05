@@ -20,7 +20,6 @@ This extension provides a comprehensive set of snippets for Rust.
 | fn         | fn decl                     |
 | fn_met     | method decl                 |
 | async_fn   | async fn decl               |
-| block      | block decl                  |
 | mod        | module decl                 |
 | use        | use crate/type/fn           |
 | test_mod   | module test decl            |
