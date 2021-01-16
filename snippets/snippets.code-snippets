@@ -52,13 +52,31 @@
         "description": "infinite loop"
     },
     "for": {
-        "prefix": "loop",
+        "prefix": "for",
         "body": [
             "for ${1:index}, ${2:value} in ${3:iterator} {",
             "\t$0",
             "}",
         ],
         "description": "for loop"
+    },
+    "while": {
+        "prefix": "wh",
+        "body": [
+            "while ${1:test} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "while loop"
+    },
+    "while?": {
+        "prefix": "wh",
+        "body": [
+            "while let Some(${1:value}) = ${2:optional} {",
+            "\t$0",
+            "}",
+        ],
+        "description": "while let loop"
     },
     "struct": {
         "prefix": "stru",

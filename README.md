@@ -11,6 +11,8 @@ This extension provides a comprehensive set of snippets for Rust.
 | match      | match expr                  |
 | loop       | infinite loop               |
 | for        | for loop                    |
+| while      | while loop                  |
+| while?     | while let loop              |
 | stru       | struct decl                 |
 | stru_a     | tuple struct decl           |
 | enum       | enum decl                   |
