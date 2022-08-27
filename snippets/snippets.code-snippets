@@ -2,14 +2,14 @@
     "let": {
         "prefix": "let",
         "body": [
-            "let ${2:varname} : ${3:type} = $0"
+            "let ${1:varname} : ${2:type} = $0"
         ],
         "description": "unmutable var declaration"
     },
     "let_mut": {
         "prefix": "let_mut",
         "body": [
-            "let mut ${2:varname} : ${3:type} = $0"
+            "let mut ${1:varname} : ${2:type} = $0"
         ],
         "description": "mutable var declaration"
     },
@@ -36,8 +36,8 @@
     "match": {
         "prefix": "match",
         "body": [
-            "match ${1:expr} {",
-            "\t$0 => ",
+            "match $0 {",
+            "\t => ",
             "\t_ => ",
             "}",
         ],
@@ -135,7 +135,7 @@
         "prefix": "trait",
         "body": [
             "trait ${1:name} {",
-            "\t",
+            "\t$0",
             "}",
         ],
         "description": "trait decl"
@@ -152,8 +152,8 @@
     "impl_known_trait": {
         "prefix": "impl_known_t",
         "body": [
-            "impl ${1|Clone,Copy,Debug,Deref,Display,Drop,Hashable,Send,Sync|} for ${2:type} {",
-            "\t$0",
+            "impl ${1|Clone,Copy,Debug,Deref,Display,Drop,Hashable,Send,Sync|} for $0 {",
+            "\t",
             "}",
         ],
         "description": "impl a known trait for type"
@@ -161,8 +161,8 @@
     "impl_trait": {
         "prefix": "impl_t",
         "body": [
-            "impl ${1:trait_name} for ${2:type} {",
-            "\t$0",
+            "impl $0 for  {",
+            "\t",
             "}",
         ],
         "description": "impl a trait for type"
@@ -202,7 +202,7 @@
     "method": {
         "prefix": "fn_met",
         "body": [
-            "fn ${1:name}(${2|&self, &mut self, self|}, $0) -> i32 {",
+            "fn ${1:name}(${2|&self,&mut self,self|}, $0) -> i32 {",
             "\t1",
             "}",
         ],

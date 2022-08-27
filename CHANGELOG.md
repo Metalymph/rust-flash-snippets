@@ -2,6 +2,9 @@
 
 All notable changes to the "rust-flash-snippets" extension will be documented in this file.
 
+## [Version 2.0.1]
+Only small syntax fix
+
 ## [Version 2.0.0]
 
 Many snippets are been refactor in order to enjoy typing code with the good support of Rust Analyzer instead of maintain the full input focus busy.
