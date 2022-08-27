@@ -2,22 +2,22 @@
     "let": {
         "prefix": "let",
         "body": [
-            "let ${2:varname} : ${3:type} = ${4:expr}$0"
+            "let ${2:varname} : ${3:type} = $0"
         ],
         "description": "unmutable var declaration"
     },
     "let_mut": {
         "prefix": "let_mut",
         "body": [
-            "let mut ${2:varname} : ${3:type} = ${4:expr}$0"
+            "let mut ${2:varname} : ${3:type} = $0"
         ],
         "description": "mutable var declaration"
     },
     "if": {
         "prefix": "if",
         "body": [
-            "if ${1:expr} {",
-            "\t$0",
+            "if $0 {",
+            "\t",
             "} else {",
             "\t",
             "}",
@@ -27,8 +27,8 @@
     "if-let": {
         "prefix": "if?",
         "body": [
-            "if let ${1|Some(e),Err(e)|} = ${2:expr} {",
-            "\t$0",
+            "if let ${1|Some(item),Err(e)|} = $0 {",
+            "\t",
             "}",
         ],
         "description": "if-let"
@@ -37,7 +37,8 @@
         "prefix": "match",
         "body": [
             "match ${1:expr} {",
-            "\t$0",
+            "\t$0 => ",
+            "\t_ => ",
             "}",
         ],
         "description": "match expr"
@@ -54,17 +55,26 @@
     "for": {
         "prefix": "for",
         "body": [
-            "for ${1:index}, ${2:value} in ${3:iterator} {",
-            "\t$0",
+            "for ${1:index}, ${2:value} in $0 {",
+            "\t",
             "}",
         ],
         "description": "for loop"
     },
+    "for_enum": {
+        "prefix": "for_e",
+        "body": [
+            "for (${1:index}, ${2:value}) in $0 {",
+            "\t",
+            "}",
+        ],
+        "description": "for enum loop"
+    },
     "while": {
         "prefix": "wh",
         "body": [
-            "while ${1:test} {",
-            "\t$0",
+            "while $0 {",
+            "\t",
             "}",
         ],
         "description": "while loop"
@@ -72,8 +82,8 @@
     "while?": {
         "prefix": "wh",
         "body": [
-            "while let Some(${1:value}) = ${2:optional} {",
-            "\t$0",
+            "while let Some(${1:value}) = $0 {",
+            "\t",
             "}",
         ],
         "description": "while let loop"
@@ -81,39 +91,66 @@
     "struct": {
         "prefix": "stru",
         "body": [
-            "struct ${2:name}${3:<T>} {",
+            "struct ${1:name} {",
             "\t$0",
             "}",
         ],
         "description": "struct decl"
     },
-    "astruct": {
-        "prefix": "stru_tup",
+    "struct_generic": {
+        "prefix": "stru",
         "body": [
-            "struct ${1:name}${2:<T>} ($0)",
+            "struct ${1:name}<T$0> {",
+            "\t",
+            "}",
+        ],
+        "description": "generic struct decl"
+    },
+    "struct_tuple": {
+        "prefix": "stru",
+        "body": [
+            "struct ${1:name}($0)",
         ],
         "description": "tuple struct decl"
     },
     "enum": {
         "prefix": "enum",
         "body": [
-            "enum ${2:name}${3:<T>} {",
+            "enum ${1:name} {",
             "\t$0",
             "}",
         ],
         "description": "enum decl"
     },
+    "enum_generic": {
+        "prefix": "enum_g",
+        "body": [
+            "enum ${1:name}<T$0> {",
+            "\t",
+            "}",
+        ],
+        "description": "generic enum decl"
+    },
     "trait": {
         "prefix": "trait",
         "body": [
-            "trait ${2:name}${3:<T>} {",
-            "\t$0",
+            "trait ${1:name} {",
+            "\t",
             "}",
         ],
         "description": "trait decl"
     },
+    "trait_generic": {
+        "prefix": "trait_g",
+        "body": [
+            "trait ${1:name}<T$0> {",
+            "\t",
+            "}",
+        ],
+        "description": "generic trait decl"
+    },
     "impl_known_trait": {
-        "prefix": "impl_known",
+        "prefix": "impl_known_t",
         "body": [
             "impl ${1|Clone,Copy,Debug,Deref,Display,Drop,Hashable,Send,Sync|} for ${2:type} {",
             "\t$0",
@@ -130,7 +167,7 @@
         ],
         "description": "impl a trait for type"
     },
-    "const/method": {
+    "constructor/method": {
         "prefix": "impl",
         "body": [
             "impl ${1:type} {",
@@ -144,29 +181,32 @@
     "fn": {
         "prefix": "fn",
         "body": [
-            "fn ${2:name}($0) -> i32 {",
+            "fn ${1:name}($0) -> i32 {",
             "\t1",
             "}",
         ],
         "description": "fn decl"
     },
-    "method": {
-        "prefix": "fn_met",
-        "body": [
-            "fn ${1:name}(${2:&self}, $0) -> i32 {",
-            "\t1",
-            "}",
-        ],
-        "description": "method decl"
-    },
     "async_fn": {
-        "prefix": "async",
+        "prefix": [
+            "fn_async", 
+            "async_fn"
+        ],
         "body": [
             "async fn ${1:name}($0) -> std::io::Result<i32, futures::future::err> {",
             "\tOk(1)",
             "}",
         ],
         "description": "async fn decl"
+    },
+    "method": {
+        "prefix": "fn_met",
+        "body": [
+            "fn ${1:name}(${2|&self, &mut self, self|}, $0) -> i32 {",
+            "\t1",
+            "}",
+        ],
+        "description": "method decl"
     },
     "mod": {
         "prefix": "mod",
@@ -176,13 +216,6 @@
             "}",
         ],
         "description": "module decl"
-    },
-    "use": {
-        "prefix": "use",
-        "body": [
-            "use ${1:crate}::$0",
-        ],
-        "description": "use crate/type/fn"
     },
     "test_mod": {
         "prefix": "test_mod",
