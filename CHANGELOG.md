@@ -2,6 +2,9 @@
 
 All notable changes to the "rust-flash-snippets" extension will be documented in this file.
 
+## [Version 2.1.0]
+Snippets symbols consinstency corrections and small insertions for some of them.
+
 ## [Version 2.0.1]
 Only small syntax fix
 
