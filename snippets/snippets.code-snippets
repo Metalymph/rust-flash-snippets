@@ -18,6 +18,15 @@
         "body": [
             "if $0 {",
             "\t",
+            "}",
+        ],
+        "description": "if"
+    },
+    "if-else": {
+        "prefix": "ife",
+        "body": [
+            "if $0 {",
+            "\t",
             "} else {",
             "\t",
             "}",
@@ -42,6 +51,26 @@
             "}",
         ],
         "description": "match expr"
+    },
+    "match_opt": {
+        "prefix": "match?",
+        "body": [
+            "match $0 {",
+            "\tSome(v) => ",
+            "\tNone => ",
+            "}",
+        ],
+        "description": "match optional"
+    },
+    "match_err": {
+        "prefix": "match!",
+        "body": [
+            "match $0 {",
+            "\tOk(v) => ",
+            "\tErr(e) => ",
+            "}",
+        ],
+        "description": "match result"
     },
     "loop": {
         "prefix": "loop",
@@ -80,7 +109,7 @@
         "description": "while loop"
     },
     "while?": {
-        "prefix": "wh",
+        "prefix": "wh?",
         "body": [
             "while let Some(${1:value}) = $0 {",
             "\t",
@@ -98,7 +127,7 @@
         "description": "struct decl"
     },
     "struct_generic": {
-        "prefix": "stru",
+        "prefix": "stru_T",
         "body": [
             "struct ${1:name}<T$0> {",
             "\t",
@@ -106,24 +135,8 @@
         ],
         "description": "generic struct decl"
     },
-    "struct_tuple": {
-        "prefix": "stru",
-        "body": [
-            "struct ${1:name}($0)",
-        ],
-        "description": "tuple struct decl"
-    },
-    "enum": {
-        "prefix": "enum",
-        "body": [
-            "enum ${1:name} {",
-            "\t$0",
-            "}",
-        ],
-        "description": "enum decl"
-    },
     "enum_generic": {
-        "prefix": "enum_g",
+        "prefix": "enum_T",
         "body": [
             "enum ${1:name}<T$0> {",
             "\t",
@@ -141,7 +154,7 @@
         "description": "trait decl"
     },
     "trait_generic": {
-        "prefix": "trait_g",
+        "prefix": "trait_T",
         "body": [
             "trait ${1:name}<T$0> {",
             "\t",
