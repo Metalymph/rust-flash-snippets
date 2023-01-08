@@ -1,6 +1,7 @@
 # Change Log
 
-All notable changes to the "rust-flash-snippets" extension will be documented in this file.
+## [Version 2.1.0]
+README.md snippets table restored
 
 ## [Version 2.1.0]
 Snippets symbols consinstency corrections and small insertions for some of them.
