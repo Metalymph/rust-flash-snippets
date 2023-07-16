@@ -34,7 +34,7 @@
         "description": "if-else"
     },
     "if-let": {
-        "prefix": "if?",
+        "prefix": "if?!",
         "body": [
             "if let ${1|Some(item),Err(e)|} = $0 {",
             "\t",
@@ -91,9 +91,9 @@
         "description": "for loop"
     },
     "for_enum": {
-        "prefix": "for_e",
+        "prefix": "fore",
         "body": [
-            "for (${1:index}, ${2:value}) in $0 {",
+            "for (${1:index}, ${2:value}) in $0.${3|iter(),into_iter(),iter_mut()|}.enumerate() {",
             "\t",
             "}"
         ],
@@ -126,24 +126,6 @@
         ],
         "description": "struct decl"
     },
-    "struct_generic": {
-        "prefix": "stru_T",
-        "body": [
-            "struct ${1:name}<T$0> {",
-            "\t",
-            "}"
-        ],
-        "description": "generic struct decl"
-    },
-    "enum_generic": {
-        "prefix": "enum_T",
-        "body": [
-            "enum ${1:name}<T$0> {",
-            "\t",
-            "}"
-        ],
-        "description": "generic enum decl"
-    },
     "trait": {
         "prefix": "trait",
         "body": [
@@ -153,15 +135,6 @@
         ],
         "description": "trait decl"
     },
-    "trait_generic": {
-        "prefix": "trait_T",
-        "body": [
-            "trait ${1:name}<T$0> {",
-            "\t",
-            "}"
-        ],
-        "description": "generic trait decl"
-    },
     "impl_known_trait": {
         "prefix": "impl_known_t",
         "body": [
@@ -170,15 +143,6 @@
             "}"
         ],
         "description": "impl a known trait for type"
-    },
-    "impl_trait": {
-        "prefix": "impl_t",
-        "body": [
-            "impl $0 for  {",
-            "\t",
-            "}"
-        ],
-        "description": "impl a trait for type"
     },
     "constructor/method": {
         "prefix": "impl",
@@ -203,7 +167,7 @@
     "async_fn": {
         "prefix": "fn_async",
         "body": [
-            "async fn ${1:name}($0) -> std::io::Result<i32, futures::future::err> {",
+            "async fn ${1:name}($0) -> Result<()> {",
             "\tOk(1)",
             "}"
         ],
@@ -228,7 +192,7 @@
         "description": "module decl"
     },
     "test_mod": {
-        "prefix": "test_mod",
+        "prefix": "mod_test",
         "body": [
             "#[cfg(test)]",
             "mod {",

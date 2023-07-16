@@ -1,6 +1,14 @@
 # Change Log
 
-## [Version 2.1.0]
+## [Version 3.0.0]
+* Fixed enumerating for.
+* Generic snippets removed due to redundancy.
+* `fn_async` snippet now displays a common `Result<()>`.
+* Fixed some prefixes for consistency.
+* README.md fixed.
+* Version change log fixed.
+
+## [Version 2.1.1]
 README.md snippets table restored
 
 ## [Version 2.1.0]
