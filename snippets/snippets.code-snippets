@@ -93,7 +93,7 @@
     "for_enum": {
         "prefix": "fore",
         "body": [
-            "for (${1:index}, ${2:value}) in $0.${3|iter(),into_iter(),iter_mut()|}.enumerate() {",
+            "for (i, &item) in $0.${3|iter(),into_iter(),iter_mut()|}.enumerate() {",
             "\t",
             "}"
         ],
@@ -135,21 +135,82 @@
         ],
         "description": "trait decl"
     },
-    "impl_known_trait": {
-        "prefix": "impl_known_t",
+    "impl_deref": {
+        "prefix": "im_deref",
         "body": [
-            "impl ${1|Clone,Copy,Debug,Deref,Display,Drop,Hashable,Send,Sync|} for $0 {",
-            "\t",
+            "impl<T> Deref for ${1:type}<T> {",
+            "\ttype Target = T\n",
+            "\tfn deref(&self) -> &T {",
+            "\t\t$0",
+            "\t}",
             "}"
         ],
-        "description": "impl a known trait for type"
+        "description": "impl Deref trait for type"
+    },
+    "impl_display": {
+        "prefix": "im_display",
+        "body": [
+            "impl Display for ${1:type} {",
+            "\tfn fmt(&self, f: &mut Formatter) -> fmt::Result {",
+            "\t\twrite!(f, \"{}\", self.$0)",
+            "\t}",
+            "}"
+        ],
+        "description": "impl Display trait for type"
+    },
+    "impl_drop": {
+        "prefix": "im_drop",
+        "body": [
+            "impl<> Drop for ${1:type}<T> {",
+            "\tfn drop(&mut self) {",
+            "\t\tunsafe {",
+            "\t\t\tlibc::free(self.0.as_ptr().cast());$0",
+            "\t\t}",
+            "\t}",
+            "}"
+        ],
+        "description": "impl Drop trait for type"
+    },
+    "impl_hash": {
+        "prefix": "im_hash",
+        "body": [
+            "impl Hash for ${1:type} {",
+            "\tfn hash<H: Hasher>(&self, state: &mut H) {",
+            "\t\tself.$0.hash(state)",
+            "\t}",
+            "}"
+        ],
+        "description": "impl Hash trait for type"
+    },
+    "impl_from": {
+        "prefix": "im_from",
+        "body": [
+            "impl From<${1:from_type}> for ${2:to_type} {",
+            "\tfn from(item: ${1:from_type}) -> Self {",
+            "\t\t${2:to_type} { $0 }",
+            "\t}",
+            "}"
+        ],
+        "description": "impl From/Into trait for type"
+    },
+    "impl_tryfrom": {
+        "prefix": "im_tryfrom",
+        "body": [
+            "impl TryFrom<${1:from_type}> for ${2:to_type} {",
+            "\ttype Error = ()\n",
+            "\tfn try_from(value: ${1:from_type}) -> Result<Self, Self::Error> {",
+            "\t\tOk(${2:to_type} { $0 })",
+            "\t}",
+            "}"
+        ],
+        "description": "impl TryFrom/TryInto trait for type"
     },
     "constructor/method": {
         "prefix": "impl",
         "body": [
             "impl ${1:type} {",
-            "\tfn new($0) -> ${1:type} {",
-            "\t\t${1:type}{}",
+            "\tfn new() -> ${1:type} {",
+            "\t\t${1:type}{ $0 }",
             "\t}",
             "}"
         ],

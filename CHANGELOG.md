@@ -1,5 +1,9 @@
 # Change Log
 
+## [Version 3.1.0]
+* Added snipets for common traits implementation
+* `impl_t` is no longer available, instead you can use `im_from`, `im_display`, `im_`
+
 ## [Version 3.0.1]
 README.md fixed.
 
@@ -21,7 +25,7 @@ Only small syntax fix
 
 ## [Version 2.0.0]
 
-Many snippets are been refactor in order to enjoy typing code with the good support of Rust Analyzer instead of maintain the full input focus busy.
-Some snippets are been added, allowing the separation between multiple choices of the same snippets.
+* Many snippets are been refactor in order to enjoy typing code with the good support of Rust Analyzer instead of maintain the full input focus busy.
+* Some snippets are been added, allowing the separation between multiple choices of the same snippets.
 
 I hope you'll like the changes, and don't think to much to show your comments.
