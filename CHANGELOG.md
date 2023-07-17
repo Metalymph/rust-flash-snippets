@@ -2,7 +2,7 @@
 
 ## [Version 3.1.0]
 * Added snipets for common traits implementation
-* `impl_t` is no longer available, instead you can use `im_from`, `im_display`, `im_`
+* `impl_t` is no longer available, instead you can use `im_deref`, `im_display`, `im_drop`, `im_hash`, `im_from`, `im_tryfrom`
 
 ## [Version 3.0.1]
 README.md fixed.
