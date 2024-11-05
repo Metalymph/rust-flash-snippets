@@ -266,8 +266,8 @@
         "prefix": "fn_test",
         "body": [
             "#[test]",
-            "fn ${1:name}($0) -> i32 {",
-            "\t1",
+            "fn ${1:name}($0) {",
+            "\t",
             "}"
         ],
         "description": "test fn decl"
