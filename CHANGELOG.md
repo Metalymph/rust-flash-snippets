@@ -1,5 +1,8 @@
 # Change Log
 
+## [Version 3.1.1]
+Fixed: `fn_test` returned a non `Termination` type.
+
 ## [Version 3.1.0]
 * Added snipets for common traits implementation
 * `impl_t` is no longer available, instead you can use `im_deref`, `im_display`, `im_drop`, `im_hash`, `im_from`, `im_tryfrom`
