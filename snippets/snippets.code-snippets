@@ -219,8 +219,8 @@
     "fn": {
         "prefix": "fn",
         "body": [
-            "fn ${1:name}($0) -> i32 {",
-            "\t1",
+            "fn ${1:name}(${2}) -> ${3:i32} {",
+            "\t$4",
             "}"
         ],
         "description": "fn decl"
