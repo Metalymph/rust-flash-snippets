@@ -1,5 +1,9 @@
 # Change Log
 
+## [Version 3.1.2]
+Now `fn` snippet follows a more general approach letting user to
+linearly tab ahead.
+
 ## [Version 3.1.1]
 Fixed: `fn_test` returned a non `Termination` type.
 
